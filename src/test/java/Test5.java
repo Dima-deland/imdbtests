@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
@@ -106,9 +108,9 @@ public class Test5 {
 
             int position = movieslist.indexOf("The Godfather");
 
-            Verify.verify(mtitlev.equals(movie[position].Title), "Title isn't matched");
-            Verify.verify(myearv.equals(movie[position].Year), "Year isn't matched");
-            Verify.verify(mratingv.equals(movie[position].Rating), "Rating isn't matched");
+            Verify.verify(mtitlev.equals(movie[position].Title), "Title isn't matched Value on list:"+movie[position].Title.toString()+" Value on page:"+mtitlev.toString());
+            Verify.verify(myearv.equals(movie[position].Year), "Year isn't matched Value on list:"+movie[position].Year.toString()+" Value on page:"+myearv.toString());
+            Verify.verify(mratingv.equals(movie[position].Rating), "Rating isn't matched. Value on list:"+movie[position].Rating.toString()+" Value on page:"+mratingv.toString());
 
             driver.quit();
 

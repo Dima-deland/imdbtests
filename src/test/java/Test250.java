@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
@@ -17,8 +19,12 @@ public class Test250 {
         System.setProperty("webdriver.chrome.driver", "/Users/dmytro/chromedriver");
     }
 
+    WebDriver driver = new ChromeDriver();
+    @AfterSuite
+    public void tearDown() {
+        driver.quit();
+    }
     @Test
-
     public void Test250() {
         var toplimit = 250;
         Movies[] movie = new Movies[toplimit];
@@ -33,7 +39,6 @@ public class Test250 {
 //  System.out.println(movie[i].Position);
         }
 
-        WebDriver driver = new ChromeDriver();
         driver.get("https://www.imdb.com/");
 
         WebElement burger = driver.findElement(By.xpath("//*[@id='imdbHeader-navDrawerOpen']"));
@@ -99,16 +104,18 @@ public class Test250 {
        System.out.println("Movie on " + Integer.toString(rposition) + " was checked");
 
         if (gflink.getAttribute("className").contains("ipc-title-link-wrapper")) {
-            WebElement ftr = driver.findElement(By.xpath("//*[@id='__next']/main/div/div[3]/section/div/div[2]/div/ul/li[40]/div[2]/div/div/div[2]/span[1]"));
-            ftr.click();
-            ftr = driver.findElement(By.xpath("//*[@id='__next']/main/div/div[3]/section/div/div[2]/div/ul/li[125]/div[80]/div/div/div[2]/span[1]"));
-            ftr.click();
-            ftr = driver.findElement(By.xpath("//*[@id='__next']/main/div/div[3]/section/div/div[2]/div/ul/li[188]/div[120]/div/div/div[2]/span[1]"));
-            ftr.click();
-            ftr = driver.findElement(By.xpath("//*[@id='__next']/main/div/div[3]/section/div/div[2]/div/ul/li[188]/div[160]/div/div/div[2]/span[1]"));
-            ftr.click();
-            ftr = driver.findElement(By.xpath("//*[@id='__next']/main/div/div[3]/section/div/div[2]/div/ul/li[188]/div[200]/div/div/div[2]/span[1]"));
-            ftr.click();
+            WebElement scr = driver.findElement(By.xpath("//*[@id='__next']/main/div/div[3]/section/div/div[2]/div/ul/li[35]/div[2]/div/div/div[2]/span[1]"));
+            scr.click();
+            scr = driver.findElement(By.xpath("//*[@id='__next']/main/div/div[3]/section/div/div[2]/div/ul/li[70]/div[2]/div/div/div[2]/span[1]"));
+            scr.click();
+            scr = driver.findElement(By.xpath("//*[@id='__next']/main/div/div[3]/section/div/div[2]/div/ul/li[105]/div[2]/div/div/div[2]/span[1]"));
+            scr.click();
+            scr = driver.findElement(By.xpath("//*[@id='__next']/main/div/div[3]/section/div/div[2]/div/ul/li[140]/div[2]/div/div/div[2]/span[1]"));
+            scr.click();
+            scr = driver.findElement(By.xpath("//*[@id='__next']/main/div/div[3]/section/div/div[2]/div/ul/li[175]/div[2]/div/div/div[2]/span[1]"));
+            scr.click();
+            scr = driver.findElement(By.xpath("//*[@id='__next']/main/div/div[3]/section/div/div[2]/div/ul/li[210]/div[2]/div/div/div[2]/span[1]"));
+            scr.click();
 
             WebElement rmovielink = driver.findElement(By.xpath("//*[@id='__next']/main/div/div[3]/section/div/div[2]/div/ul/li[" + Integer.toString(rposition) + "]/div[2]/div/div/div[1]/a/h3"));
             rmovielink.click();
