@@ -33,12 +33,12 @@ public class Test5 {
         }
 
         WebDriver driver = new ChromeDriver();
-        driver.get("https://www.imdb.com/");
 
-        WebElement burger = driver.findElement(By.xpath("//*[@id=\'imdbHeader-navDrawerOpen\']"));
+        driver.get("https://www.imdb.com");
+
+        WebElement burger = driver.findElement(By.xpath("//*[@id='imdbHeader-navDrawerOpen']"));
         burger.click();
-
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
         WebElement top = driver.findElement(By.linkText("Top 250 Movies"));
         top.click();
@@ -48,40 +48,44 @@ public class Test5 {
 
         if (gflink.getAttribute("className").contains("ipc-title-link-wrapper")) {
 
+            //close notification that site is using new design
+            WebElement clsnt = driver.findElement(By.className("ipc-snackbase__buttons"));
+            clsnt.click();
+
             //get titles data new version
             for (int i = 0; i < toplimit; i++) {
-                title[i] = driver.findElement(By.xpath("//*[@id=\'__next\']/main/div/div[3]/section/div/div[2]/div/ul/li[" + Integer.toString(i + 1) + "]/div[2]/div/div/div[1]/a/h3"));
+                title[i] = driver.findElement(By.xpath("//*[@id='__next']/main/div/div[3]/section/div/div[2]/div/ul/li[" + Integer.toString(i + 1) + "]/div[2]/div/div/div[1]/a/h3"));
                 movie[i].Title = title[i].getText().substring(3);
             }
 
             //get year data new version
             for (int i = 0; i < toplimit; i++) {
-                year[i] = driver.findElement(By.xpath("//*[@id=\'__next\']/main/div/div[3]/section/div/div[2]/div/ul/li[" + Integer.toString(i + 1) + "]/div[2]/div/div/div[2]/span[1]"));
+                year[i] = driver.findElement(By.xpath("//*[@id='__next']/main/div/div[3]/section/div/div[2]/div/ul/li[" + Integer.toString(i + 1) + "]/div[2]/div/div/div[2]/span[1]"));
                 movie[i].Year = year[i].getText();
             }
 
             //get rating data new version
             for (int i = 0; i < toplimit; i++) {
-                rating[i] = driver.findElement(By.xpath("//*[@id=\'__next\']/main/div/div[3]/section/div/div[2]/div/ul/li[" + Integer.toString(i + 1) + "]/div[2]/div/div/span/div/span"));
+                rating[i] = driver.findElement(By.xpath("//*[@id='__next']/main/div/div[3]/section/div/div[2]/div/ul/li[" + Integer.toString(i + 1) + "]/div[2]/div/div/span/div/span"));
                 movie[i].Rating = rating[i].getText();
             }
         } else {
 
             //get titles data
             for (int i = 0; i < toplimit; i++) {
-                title[i] = driver.findElement(By.xpath("//*[@id=\'main\']/div/span/div[1]/div/div[3]/table/tbody/tr[" + Integer.toString(i + 1) + "]/td[2]/a"));
+                title[i] = driver.findElement(By.xpath("//*[@id='main']/div/span/div[1]/div/div[3]/table/tbody/tr[" + Integer.toString(i + 1) + "]/td[2]/a"));
                 movie[i].Title = title[i].getText();
             }
 
             //get year data
             for (int i = 0; i < toplimit; i++) {
-                year[i] = driver.findElement(By.xpath("//*[@id=\'main\']/div/span/div[1]/div/div[3]/table/tbody/tr[" + Integer.toString(i + 1) + "]/td[2]/span"));
+                year[i] = driver.findElement(By.xpath("//*[@id='main']/div/span/div[1]/div/div[3]/table/tbody/tr[" + Integer.toString(i + 1) + "]/td[2]/span"));
                 movie[i].Year = year[i].getText().substring(1, 5);
             }
 
             //get rating data
             for (int i = 0; i < toplimit; i++) {
-                rating[i] = driver.findElement(By.xpath("//*[@id=\'main\']/div/span/div[1]/div/div[3]/table/tbody/tr[" + Integer.toString(i + 1) + "]/td[3]/strong"));
+                rating[i] = driver.findElement(By.xpath("//*[@id='main']/div/span/div[1]/div/div[3]/table/tbody/tr[" + Integer.toString(i + 1) + "]/td[3]/strong"));
                 movie[i].Rating = rating[i].getText();
             }
         }
@@ -95,12 +99,12 @@ public class Test5 {
 
             Verify.verify (movieslist.contains("The Godfather"),"It couldn't happen.'The Godfather' isn't in Top 5");
 
+            driver.get(gflink.getAttribute("href"));
+            //gflink.click();
 
-            gflink.click();
-
-            WebElement mtitle = driver.findElement(By.xpath("//*[@id=\'__next\']/main/div/section[1]/section/div[3]/section/section/div[2]/div[1]/h1/span"));
-            WebElement myear = driver.findElement(By.xpath("//*[@id=\'__next\']/main/div/section[1]/section/div[3]/section/section/div[2]/div[1]/ul/li[1]/a"));
-            WebElement mrating = driver.findElement(By.xpath("//*[@id=\'__next\']/main/div/section[1]/section/div[3]/section/section/div[2]/div[2]/div/div[1]/a/span/div/div[2]/div[1]/span[1]"));
+            WebElement mtitle = driver.findElement(By.xpath("//*[@id='__next']/main/div/section[1]/section/div[3]/section/section/div[2]/div[1]/h1/span"));
+            WebElement myear = driver.findElement(By.xpath("//*[@id='__next']/main/div/section[1]/section/div[3]/section/section/div[2]/div[1]/ul/li[1]/a"));
+            WebElement mrating = driver.findElement(By.xpath("//*[@id='__next']/main/div/section[1]/section/div[3]/section/section/div[2]/div[2]/div/div[1]/a/span/div/div[2]/div[1]/span[1]"));
 
             String mtitlev = mtitle.getText();
             String myearv = myear.getText();
