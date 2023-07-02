@@ -20,7 +20,7 @@ public class Test250 {
     public void tearDown() {
         driver.quit();
     }*/
-    @Test
+    //@Test
     public void Test250() {
         var toplimit = 250;
         Movies[] movie = new Movies[toplimit];

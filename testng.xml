@@ -4,6 +4,7 @@
     <test verbose="2" preserve-order="true" name="/Users/dmytro/IdeaProjects/untitled">
         <classes>
             <class name="Test5"></class>
+            <class name="Test250"></class>
         </classes>
     </test>
 </suite>

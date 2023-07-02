@@ -43,8 +43,11 @@ public class Test5 {
         WebElement top = driver.findElement(By.linkText("Top 250 Movies"));
         top.click();
 
+        WebElement gfimage = driver.findElement(By.cssSelector("[src='https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_UY67_CR1,0,45,67_AL_.jpg']"));
+        String gflocname = gfimage.getAttribute("alt");
+        System.out.println(gflocname);
         // get class name to check site version
-        WebElement gflink = driver.findElement(By.partialLinkText("The Godfather"));
+        WebElement gflink = driver.findElement(By.partialLinkText(gflocname));
 
         if (gflink.getAttribute("className").contains("ipc-title-link-wrapper")) {
 
@@ -97,7 +100,7 @@ public class Test5 {
             }
 
 
-            Verify.verify (movieslist.contains("The Godfather"),"It couldn't happen.'The Godfather' isn't in Top 5");
+            Verify.verify (movieslist.contains(gflocname),"It couldn't happen.'The Godfather' isn't in Top 5");
 
             driver.get(gflink.getAttribute("href"));
             //gflink.click();
@@ -110,7 +113,7 @@ public class Test5 {
             String myearv = myear.getText();
             String mratingv = mrating.getText();
 
-            int position = movieslist.indexOf("The Godfather");
+            int position = movieslist.indexOf(gflocname);
 
             Verify.verify(mtitlev.equals(movie[position].Title), "Title isn't matched Value on list:"+movie[position].Title.toString()+" Value on page:"+mtitlev.toString());
             Verify.verify(myearv.equals(movie[position].Year), "Year isn't matched Value on list:"+movie[position].Year.toString()+" Value on page:"+myearv.toString());
