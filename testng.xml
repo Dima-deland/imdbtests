@@ -3,6 +3,7 @@
 
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="/Users/dmytro/IdeaProjects/untitled">
+       <parameter name="pathtodriver" value="/Users/dmytro/chromedriver"></parameter>
         <classes>
             <class name="Test5"></class>
             <class name="Test250"></class>
