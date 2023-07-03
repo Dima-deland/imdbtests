@@ -4,6 +4,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
@@ -16,11 +19,11 @@ public class Test250 {
     }
 
     WebDriver driver = new ChromeDriver();
-    /*@AfterSuite
+    @AfterTest
     public void tearDown() {
         driver.quit();
-    }*/
-    //@Test
+    }
+   @Test
     public void Test250() {
         var toplimit = 250;
         Movies[] movie = new Movies[toplimit];
@@ -64,7 +67,7 @@ public class Test250 {
             //get rating data
             for (int i = 0; i < toplimit; i++) {
                 rating[i] = driver.findElement(By.xpath("//*[@id='main']/div/span/div[1]/div/div[3]/table/tbody/tr[" + Integer.toString(i + 1 ) + "]/td[3]/strong"));
-                movie[i].Rating = rating[i].getText();
+                movie[i].Rating = rating[i].getText().replace(',','.');
             }
         }else{
                 //get titles data new version
@@ -117,6 +120,8 @@ public class Test250 {
         String mtitlev = mtitle.getText();
         String myearv = myear.getText();
         String mratingv = mrating.getText();
+
+
 
 
         Verify.verify(mtitlev.equals(movie[rposition-1].Title), "Title isn't matched Value on list:"+movie[rposition-1].Title.toString()+" Value on page:"+mtitle.getText().toString());
