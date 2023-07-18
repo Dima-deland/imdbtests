@@ -1,9 +1,8 @@
 public class Movies {
 
-
-    int Position;
-    String Title;
-    String Year;
-    String Rating;
+    public String Place;
+    public String Title;
+    public String Year;
+    public String Rating;
 
 }
