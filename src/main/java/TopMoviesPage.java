@@ -18,7 +18,7 @@ public class TopMoviesPage {
     WebElement[] year = new WebElement[251];
     WebElement[] rating = new WebElement[251];
     WebElement movieLink;
-    WebElement movietocompare;
+    WebElement movieLocalName;
 
     public void openPage() {
         driver.get("https://www.imdb.com/chart/top/?ref_=nv_mv_250");
@@ -60,13 +60,13 @@ public class TopMoviesPage {
     }
 
     public String getMovieLocalTitleByurl (String link){
-        movietocompare = driver.findElement(By.cssSelector("[href='"+link+"']"));
-        return movietocompare.getText().substring(movietocompare.getText().indexOf(" ")+1);
+        movieLocalName = driver.findElement(By.cssSelector("[href='"+link+"']"));
+        return movieLocalName.getText().substring(movieLocalName.getText().indexOf(" ")+1);
     }
 
     public Integer getMoviePlaceByurl (String link){
-        movietocompare = driver.findElement(By.cssSelector("[href='"+link+"']"));
-        return Integer.valueOf(movietocompare.getText().substring(0, movietocompare.getText().indexOf(".")));
+        movieLocalName = driver.findElement(By.cssSelector("[href='"+link+"']"));
+        return Integer.valueOf(movieLocalName.getText().substring(0, movieLocalName.getText().indexOf(".")));
     }
 
     public void scrolltoMovieLink (Integer position) {
